@@ -7,7 +7,306 @@
   <title>Wedding Countdown</title>
 
   <style>
-    body{
+    body{<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khaoula's Wedding Countdown</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(255, 214, 232, 0.9), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255, 190, 210, 0.8), transparent 40%),
+        linear-gradient(135deg, #7b1e3c, #c64b6c, #f3b6c8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1.5px);
+      background-size: 70px 70px, 120px 120px;
+      animation: sparkleMove 18s linear infinite;
+      opacity: 0.55;
+    }
+
+    @keyframes sparkleMove {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120px); }
+    }
+
+    .hearts span {
+      position: fixed;
+      bottom: -60px;
+      font-size: 22px;
+      opacity: 0.45;
+      animation: floatUp 10s linear infinite;
+    }
+
+    .hearts span:nth-child(1) { left: 8%; animation-delay: 0s; }
+    .hearts span:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 28px; }
+    .hearts span:nth-child(3) { left: 35%; animation-delay: 4s; }
+    .hearts span:nth-child(4) { left: 52%; animation-delay: 1s; font-size: 30px; }
+    .hearts span:nth-child(5) { left: 67%; animation-delay: 3s; }
+    .hearts span:nth-child(6) { left: 82%; animation-delay: 5s; font-size: 26px; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      15% { opacity: 0.55; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      width: min(960px, 95vw);
+      padding: 55px 45px;
+      text-align: center;
+      border-radius: 38px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 25px 70px rgba(91, 14, 45, 0.35),
+        inset 0 0 40px rgba(255, 255, 255, 0.08);
+      animation: fadeIn 1.2s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 22px;
+      margin-bottom: 20px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.25);
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .names {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(56px, 9vw, 105px);
+      line-height: 1;
+      color: #fff7fb;
+      text-shadow: 0 8px 25px rgba(90, 8, 45, 0.35);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: clamp(15px, 2vw, 20px);
+      opacity: 0.95;
+      margin-bottom: 42px;
+      font-weight: 400;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 38px;
+    }
+
+    .box {
+      padding: 28px 15px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #fff, #ffe9f0);
+      color: #8d2448;
+      box-shadow:
+        0 16px 30px rgba(102, 20, 56, 0.22),
+        inset 0 -8px 18px rgba(255, 180, 205, 0.25);
+      transform: translateY(0);
+      transition: 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-8px);
+    }
+
+    .number {
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .label {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b23a61;
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 600;
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        overflow-y: auto;
+      }
+
+      .card {
+        padding: 38px 22px;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .box {
+        padding: 24px 10px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .countdown {
+        gap: 12px;
+      }
+
+      .label {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sparkles"></div>
+
+  <div class="hearts">
+    <span>♡</span>
+    <span>❤</span>
+    <span>♡</span>
+    <span>❤</span>
+    <span>♡</span>
+    <span>❤</span>
+  </div>
+
+  <main class="card">
+    <div class="badge">Wedding Countdown</div>
+
+    <div class="names">Khaoula</div>
+
+    <h1>
+      Future mariée en cours de chargement… patience 👰🏻‍♀️
+    </h1>
+
+    <p class="subtitle">
+      Le “oui” approche dangereusement 🏃🏻‍♀️‍➡️
+    </p>
+
+    <section class="countdown">
+      <div class="box">
+        <div class="number" id="days">00</div>
+        <div class="label">Jours</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="hours">00</div>
+        <div class="label">Heures</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="minutes">00</div>
+        <div class="label">Minutes</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="seconds">00</div>
+        <div class="label">Secondes</div>
+      </div>
+    </section>
+
+    <div class="date">💍 22 Août 2026</div>
+
+    <div class="footer">
+      Une nouvelle histoire commence bientôt…
+    </div>
+  </main>
+
+  <script>
+    const targetDate = new Date("2026-08-22T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.querySelector(".countdown").innerHTML = `
+          <div class="box" style="grid-column: 1 / -1;">
+            <div class="number">💍</div>
+            <div class="label">C’est le grand jour !</div>
+          </div>
+        `;
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+      document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
       margin:0;
       height:100vh;
       display:flex;
