@@ -1,439 +1,373 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Countdown</title>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Khaoula 👰🏻‍♀️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
   <style>
-    body{<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khaoula's Wedding Countdown</title>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --blush:  #f7d6d0;
+      --rose:   #c9727a;
+      --deep:   #7a2d35;
+      --gold:   #c9a96e;
+      --cream:  #fdf6f0;
+      --text:   #3a1a1e;
+      --glass:  rgba(255,255,255,0.55);
     }
+
+    html { height: 100%; }
 
     body {
       min-height: 100vh;
-      overflow: hidden;
-      font-family: "Poppins", sans-serif;
-      color: #fff;
-      background:
-        radial-gradient(circle at top left, rgba(255, 214, 232, 0.9), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(255, 190, 210, 0.8), transparent 40%),
-        linear-gradient(135deg, #7b1e3c, #c64b6c, #f3b6c8);
+      min-height: 100dvh;
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      color: var(--text);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+      padding: 24px 16px 40px;
     }
 
-    .sparkles {
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 10%,  #f9e0da 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 80%,  #f5cfc8 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% 50%,  #fdf6f0 0%, transparent 80%);
+      z-index: 0;
+    }
+
+    /* ── Petals ── */
+    #petals {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1.5px);
-      background-size: 70px 70px, 120px 120px;
-      animation: sparkleMove 18s linear infinite;
-      opacity: 0.55;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -50px;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0)     rotate(0deg)   scale(1);   opacity: 0; }
+      6%   { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(110vh) rotate(360deg) scale(0.6); opacity: 0; }
     }
 
-    @keyframes sparkleMove {
-      from { transform: translateY(0); }
-      to { transform: translateY(-120px); }
-    }
-
-    .hearts span {
-      position: fixed;
-      bottom: -60px;
-      font-size: 22px;
-      opacity: 0.45;
-      animation: floatUp 10s linear infinite;
-    }
-
-    .hearts span:nth-child(1) { left: 8%; animation-delay: 0s; }
-    .hearts span:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 28px; }
-    .hearts span:nth-child(3) { left: 35%; animation-delay: 4s; }
-    .hearts span:nth-child(4) { left: 52%; animation-delay: 1s; font-size: 30px; }
-    .hearts span:nth-child(5) { left: 67%; animation-delay: 3s; }
-    .hearts span:nth-child(6) { left: 82%; animation-delay: 5s; font-size: 26px; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0; }
-      15% { opacity: 0.55; }
-      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-    }
-
+    /* ── Card ── */
     .card {
       position: relative;
       z-index: 2;
-      width: min(960px, 95vw);
-      padding: 55px 45px;
+      width: 100%;
+      max-width: 420px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 32px;
+      padding: clamp(28px, 8vw, 44px) clamp(20px, 6vw, 36px) clamp(32px, 9vw, 48px);
       text-align: center;
-      border-radius: 38px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(18px);
       box-shadow:
-        0 25px 70px rgba(91, 14, 45, 0.35),
-        inset 0 0 40px rgba(255, 255, 255, 0.08);
-      animation: fadeIn 1.2s ease both;
+        0 8px 40px rgba(122,45,53,0.09),
+        0 2px 8px  rgba(201,114,122,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+      animation: rise 1.1s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes rise {
+      from { opacity:0; transform: translateY(40px) scale(0.96); }
+      to   { opacity:1; transform: translateY(0)    scale(1);    }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ── Ring icon ── */
+    .ring-wrap { display:flex; justify-content:center; margin-bottom: 18px; }
+    .ring {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.9rem;
+      background: rgba(255,255,255,0.65);
+      box-shadow: 0 0 0 7px rgba(201,169,110,0.13);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 7px rgba(201,169,110,0.13); }
+      50%      { box-shadow: 0 0 0 16px rgba(201,169,110,0.05); }
     }
 
-    .badge {
-      display: inline-block;
-      padding: 10px 22px;
-      margin-bottom: 20px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.25);
-      font-size: 14px;
-      letter-spacing: 1.5px;
+    /* ── Text ── */
+    .eyebrow {
+      font-weight: 300;
+      font-size: clamp(0.6rem, 2.4vw, 0.72rem);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      font-weight: 600;
+      color: var(--rose);
+      margin-bottom: 8px;
+      opacity: 0; animation: fadein 0.8s 0.4s forwards;
     }
-
-    .names {
-      font-family: "Great Vibes", cursive;
-      font-size: clamp(56px, 9vw, 105px);
-      line-height: 1;
-      color: #fff7fb;
-      text-shadow: 0 8px 25px rgba(90, 8, 45, 0.35);
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(22px, 3vw, 34px);
-      font-weight: 700;
-      line-height: 1.45;
-      margin-bottom: 12px;
-    }
-
-    .subtitle {
-      font-size: clamp(15px, 2vw, 20px);
-      opacity: 0.95;
-      margin-bottom: 42px;
+    .name {
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.8rem, 14vw, 4rem);
+      line-height: 1;
+      color: var(--deep);
+      margin-bottom: 6px;
+      opacity: 0; animation: fadein 0.9s 0.55s forwards;
+    }
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 3.8vw, 1.05rem);
+      color: var(--rose);
+      line-height: 1.6;
+      margin-bottom: 26px;
+      opacity: 0; animation: fadein 0.9s 0.7s forwards;
+    }
+    @keyframes fadein {
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
+    /* ── Divider ── */
+    .divider {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+      opacity: 0; animation: fadein 0.8s 0.85s forwards;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .divider span { font-size: 0.75rem; color: var(--gold); }
+
+    /* ── Countdown ── */
     .countdown {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 38px;
+      gap: clamp(6px, 2vw, 10px);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadein 0.9s 1s forwards;
     }
-
+    .unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
     .box {
-      padding: 28px 15px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #fff, #ffe9f0);
-      color: #8d2448;
+      width: 100%;
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-radius: clamp(12px, 4vw, 18px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(1.5rem, 8vw, 2.4rem);
+      color: var(--deep);
       box-shadow:
-        0 16px 30px rgba(102, 20, 56, 0.22),
-        inset 0 -8px 18px rgba(255, 180, 205, 0.25);
-      transform: translateY(0);
-      transition: 0.3s ease;
+        0 4px 14px rgba(122,45,53,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      position: relative; overflow: hidden;
     }
-
-    .box:hover {
-      transform: translateY(-8px);
+    .box::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,0.45) 0%, transparent 55%);
+      pointer-events: none;
     }
-
-    .number {
-      font-size: clamp(38px, 6vw, 68px);
-      font-weight: 700;
-      line-height: 1;
+    .box.tick { animation: tickanim 0.28s cubic-bezier(.36,.07,.19,.97); }
+    @keyframes tickanim {
+      0%  { transform: scale(1); }
+      30% { transform: scale(0.92); }
+      70% { transform: scale(1.05); }
+      100%{ transform: scale(1); }
     }
-
     .label {
-      margin-top: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
+      font-weight: 300;
+      font-size: clamp(0.52rem, 2vw, 0.63rem);
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: #b23a61;
+      color: var(--rose);
     }
 
-    .date {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 26px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.22);
-      font-size: clamp(16px, 2vw, 22px);
-      font-weight: 600;
-      box-shadow: inset 0 0 20px rgba(255,255,255,0.08);
+    /* ── Progress ── */
+    .progress-wrap {
+      margin-bottom: 24px;
+      opacity: 0; animation: fadein 0.8s 1.15s forwards;
+    }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-size: clamp(0.55rem, 2vw, 0.65rem);
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+    .progress-track {
+      height: 4px;
+      background: rgba(201,169,110,0.15);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blush), var(--rose), var(--gold));
+      border-radius: 99px;
+      transition: width 1s ease;
     }
 
-    .footer {
-      margin-top: 30px;
-      font-size: 14px;
-      opacity: 0.85;
+    /* ── Date pill ── */
+    .date-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,114,122,0.09);
+      border: 1px solid rgba(201,114,122,0.22);
+      border-radius: 99px;
+      padding: 8px 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.9rem, 4vw, 1.1rem);
+      font-style: italic;
+      color: var(--deep);
+      margin-bottom: 22px;
+      opacity: 0; animation: fadein 0.8s 1.3s forwards;
     }
 
-    @media (max-width: 720px) {
-      body {
-        overflow-y: auto;
-      }
-
-      .card {
-        padding: 38px 22px;
-      }
-
-      .countdown {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .box {
-        padding: 24px 10px;
-      }
+    /* ── Footer ── */
+    .footer-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(0.88rem, 3.6vw, 1.05rem);
+      color: rgba(122,45,53,0.58);
+      line-height: 1.75;
+      opacity: 0; animation: fadein 0.8s 1.5s forwards;
     }
 
-    @media (max-width: 420px) {
-      .countdown {
-        gap: 12px;
-      }
-
-      .label {
-        font-size: 12px;
-      }
+    /* ── Hearts ── */
+    .hearts {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 20px;
+      opacity: 0; animation: fadein 0.8s 1.7s forwards;
     }
-  </style>
-</head>
-
-<body>
-
-  <div class="sparkles"></div>
-
-  <div class="hearts">
-    <span>♡</span>
-    <span>❤</span>
-    <span>♡</span>
-    <span>❤</span>
-    <span>♡</span>
-    <span>❤</span>
-  </div>
-
-  <main class="card">
-    <div class="badge">Wedding Countdown</div>
-
-    <div class="names">Khaoula</div>
-
-    <h1>
-      Future mariée en cours de chargement… patience 👰🏻‍♀️
-    </h1>
-
-    <p class="subtitle">
-      Le “oui” approche dangereusement 🏃🏻‍♀️‍➡️
-    </p>
-
-    <section class="countdown">
-      <div class="box">
-        <div class="number" id="days">00</div>
-        <div class="label">Jours</div>
-      </div>
-
-      <div class="box">
-        <div class="number" id="hours">00</div>
-        <div class="label">Heures</div>
-      </div>
-
-      <div class="box">
-        <div class="number" id="minutes">00</div>
-        <div class="label">Minutes</div>
-      </div>
-
-      <div class="box">
-        <div class="number" id="seconds">00</div>
-        <div class="label">Secondes</div>
-      </div>
-    </section>
-
-    <div class="date">💍 22 Août 2026</div>
-
-    <div class="footer">
-      Une nouvelle histoire commence bientôt…
-    </div>
-  </main>
-
-  <script>
-    const targetDate = new Date("2026-08-22T00:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0) {
-        document.querySelector(".countdown").innerHTML = `
-          <div class="box" style="grid-column: 1 / -1;">
-            <div class="number">💍</div>
-            <div class="label">C’est le grand jour !</div>
-          </div>
-        `;
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = String(hours).padStart(2, "0");
-      document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
-      document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
-
-</body>
-</html>
-      margin:0;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(135deg,#0c5f8d,#1786c8);
-      font-family:Arial, sans-serif;
-      color:white;
-      overflow:hidden;
-    }
-
-    .container{
-      text-align:center;
-      padding:40px;
-      border-radius:25px;
-      background:rgba(255,255,255,0.1);
-      backdrop-filter:blur(8px);
-      box-shadow:0 10px 40px rgba(0,0,0,0.3);
-      width:800px;
-      max-width:90%;
-    }
-
-    h1{
-      font-size:34px;
-      line-height:1.5;
-      margin-bottom:40px;
-    }
-
-    .countdown{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    .box{
-      background:white;
-      color:#0c5f8d;
-      border-radius:20px;
-      padding:20px;
-      width:130px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.15);
-    }
-
-    .number{
-      font-size:48px;
-      font-weight:bold;
-    }
-
-    .label{
-      margin-top:10px;
-      text-transform:uppercase;
-      font-size:14px;
-      letter-spacing:1px;
-    }
-
-    .date{
-      margin-top:35px;
-      font-size:22px;
-      font-weight:bold;
+    .hearts span { animation: hb 2s ease-in-out infinite; font-size: 0.8rem; }
+    .hearts span:nth-child(2) { animation-delay:0.35s; font-size: 1.1rem; }
+    .hearts span:nth-child(3) { animation-delay:0.7s; }
+    @keyframes hb {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.35); }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div id="petals"></div>
 
-  <h1>
-    Future mariée en cours de chargement… patience 👰🏻‍♀️ <br>
-    Le “oui” approche dangereusement 🏃🏻‍♀️‍➡️
-  </h1>
+<div class="card">
+  <div class="ring-wrap"><div class="ring">💍</div></div>
+
+  <p class="eyebrow">Future mariée en cours de chargement… patience</p>
+  <h1 class="name">Khaoula</h1>
+  <p class="subtitle">👰🏻‍♀️<br>le grand jour approche doucement</p>
+
+  <div class="divider"><span>✦</span></div>
 
   <div class="countdown">
-
-    <div class="box">
-      <div class="number" id="days">0</div>
-      <div class="label">Jours</div>
-    </div>
-
-    <div class="box">
-      <div class="number" id="hours">0</div>
-      <div class="label">Heures</div>
-    </div>
-
-    <div class="box">
-      <div class="number" id="minutes">0</div>
-      <div class="label">Minutes</div>
-    </div>
-
-    <div class="box">
-      <div class="number" id="seconds">0</div>
-      <div class="label">Secondes</div>
-    </div>
-
+    <div class="unit"><div class="box" id="d">000</div><div class="label">jours</div></div>
+    <div class="unit"><div class="box" id="h">00</div><div class="label">heures</div></div>
+    <div class="unit"><div class="box" id="m">00</div><div class="label">min</div></div>
+    <div class="unit"><div class="box" id="s">00</div><div class="label">sec</div></div>
   </div>
 
-  <div class="date">
-    22 Août 2026
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>aujourd'hui</span>
+      <span id="pct">0%</span>
+      <span>22 août 2026</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
   </div>
 
+  <div class="date-pill"><span>🌸</span> 22 août 2026 <span>🌸</span></div>
+
+  <p class="footer-msg">Chaque seconde qui passe<br>nous rapproche du plus beau jour…</p>
+
+  <div class="hearts">
+    <span>🌷</span><span>🤍</span><span>🌷</span>
+  </div>
 </div>
 
 <script>
+  // Petals
+  const PETALS = ['🌸','🌷','✿','🪷','💮'];
+  const canvas = document.getElementById('petals');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = PETALS[i % PETALS.length];
+    p.style.left             = Math.random() * 100 + 'vw';
+    p.style.fontSize         = (0.65 + Math.random() * 0.75) + 'rem';
+    p.style.animationDuration  = (7 + Math.random() * 9) + 's';
+    p.style.animationDelay     = (Math.random() * 14) + 's';
+    canvas.appendChild(p);
+  }
 
-const targetDate = new Date("2026-08-22T00:00:00").getTime();
+  // Countdown
+  const TARGET = new Date('2026-08-22T00:00:00');
+  const START  = new Date('2026-01-01T00:00:00');
 
-function updateCountdown() {
+  const dEl = document.getElementById('d');
+  const hEl = document.getElementById('h');
+  const mEl = document.getElementById('m');
+  const sEl = document.getElementById('s');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  let prev = {d:'',h:'',m:'',s:''};
 
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+  function pad(n, len=2) { return String(n).padStart(len,'0'); }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  function tick(el, val, key) {
+    if (val !== prev[key]) {
+      el.textContent = val;
+      el.classList.remove('tick');
+      void el.offsetWidth;
+      el.classList.add('tick');
+      prev[key] = val;
+    }
+  }
 
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
-  document.getElementById("seconds").innerText = seconds;
-}
+  function update() {
+    const now  = new Date();
+    const diff = TARGET - now;
+    if (diff <= 0) {
+      ['000','00','00','00'].forEach((v,i) => [dEl,hEl,mEl,sEl][i].textContent = v);
+      bar.style.width = '100%'; pct.textContent = '100%'; return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+    tick(dEl, pad(days,3), 'd');
+    tick(hEl, pad(hours),  'h');
+    tick(mEl, pad(mins),   'm');
+    tick(sEl, pad(secs),   's');
+    const p = Math.max(0, Math.min(100, ((now - START) / (TARGET - START)) * 100));
+    bar.style.width   = p.toFixed(2) + '%';
+    pct.textContent   = p.toFixed(1) + '%';
+  }
 
-updateCountdown();
-
-setInterval(updateCountdown, 1000);
-
+  update();
+  setInterval(update, 1000);
 </script>
-
 </body>
 </html>
