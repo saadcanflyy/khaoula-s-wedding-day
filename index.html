@@ -1,1 +1,140 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Countdown</title>
+
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#0c5f8d,#1786c8);
+      font-family:Arial, sans-serif;
+      color:white;
+      overflow:hidden;
+    }
+
+    .container{
+      text-align:center;
+      padding:40px;
+      border-radius:25px;
+      background:rgba(255,255,255,0.1);
+      backdrop-filter:blur(8px);
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      width:800px;
+      max-width:90%;
+    }
+
+    h1{
+      font-size:34px;
+      line-height:1.5;
+      margin-bottom:40px;
+    }
+
+    .countdown{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .box{
+      background:white;
+      color:#0c5f8d;
+      border-radius:20px;
+      padding:20px;
+      width:130px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .number{
+      font-size:48px;
+      font-weight:bold;
+    }
+
+    .label{
+      margin-top:10px;
+      text-transform:uppercase;
+      font-size:14px;
+      letter-spacing:1px;
+    }
+
+    .date{
+      margin-top:35px;
+      font-size:22px;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>
+    Future mariée en cours de chargement… patience 👰🏻‍♀️ <br>
+    Le “oui” approche dangereusement 🏃🏻‍♀️‍➡️
+  </h1>
+
+  <div class="countdown">
+
+    <div class="box">
+      <div class="number" id="days">0</div>
+      <div class="label">Jours</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="hours">0</div>
+      <div class="label">Heures</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="minutes">0</div>
+      <div class="label">Minutes</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="seconds">0</div>
+      <div class="label">Secondes</div>
+    </div>
+
+  </div>
+
+  <div class="date">
+    22 Août 2026
+  </div>
+
+</div>
+
+<script>
+
+const targetDate = new Date("2026-08-22T00:00:00").getTime();
+
+function updateCountdown() {
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
